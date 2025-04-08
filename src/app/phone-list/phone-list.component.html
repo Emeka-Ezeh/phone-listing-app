@@ -1,20 +1,47 @@
 <div class="search-container">
+  <!-- Brand Dropdown -->
+  <select
+    [(ngModel)]="selectedBrand"
+    (change)="filterByBrand()"
+    class="brand-dropdown"
+    [disabled]="isSearching"
+  >
+    <option value="all">All Brands</option>
+    <option *ngFor="let brand of brands" [value]="brand">
+      {{ brand }}
+    </option>
+  </select>
+
+  <!-- Search Input -->
   <input
     type="text"
     [(ngModel)]="searchQuery"
-    placeholder="Search by brand or model..."
+    placeholder="Search by brand, model, or number..."
     (keyup.enter)="search()"
     #searchInput
     class="search-input"
+    [disabled]="isSearching"
   >
-  <button (click)="search()" [disabled]="!searchQuery.trim() || isSearching" class="search-button">
+
+  <button
+    (click)="search()"
+    [disabled]="isSearching"
+    class="search-button"
+  >
     {{ isSearching ? 'Searching...' : 'Search' }}
   </button>
-  <button *ngIf="searchQuery" (click)="clearSearch()" [disabled]="isSearching" class="clear-button">
+
+  <button
+    *ngIf="searchQuery || selectedBrand !== 'all'"
+    (click)="clearSearch()"
+    [disabled]="isSearching"
+    class="clear-button"
+  >
     Clear
   </button>
 </div>
 
+<!-- Rest of your template - update phone references to filteredPhones -->
 <div *ngIf="isSearching" class="loading-indicator">
   <div class="spinner"></div>
   <p>Loading results...</p>
@@ -27,7 +54,7 @@
 <app-carousel></app-carousel>
 
 <div *ngIf="!isSearching" class="phone-grid">
-  <div *ngFor="let phone of phones" class="phone-card" (click)="goToDetails(phone.id)">
+  <div *ngFor="let phone of filteredPhones" class="phone-card" (click)="goToDetails(phone.id)">
     <div class="card-image-container">
       <img [src]="phone.imageurl" [alt]="phone.model" class="card-image">
     </div>
@@ -41,6 +68,6 @@
   </div>
 </div>
 
-<div *ngIf="!isSearching && phones.length === 0 && !searchError" class="no-results">
-  No phones available. Try a different search.
+<div *ngIf="!isSearching && filteredPhones.length === 0 && !searchError" class="no-results">
+  No phones available. Try a different search or filter.
 </div>
