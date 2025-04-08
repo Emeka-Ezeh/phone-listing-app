@@ -1,3 +1,4 @@
+// phone-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { PhoneService } from '../phone.service';
 import { Router } from '@angular/router';
@@ -6,13 +7,17 @@ import { Router } from '@angular/router';
   selector: 'app-phone-list',
   templateUrl: './phone-list.component.html',
   styleUrls: ['./phone-list.component.css'],
-
 })
 export class PhoneListComponent implements OnInit {
   phones: any[] = [];
+  filteredPhones: any[] = [];
   searchQuery: string = '';
   isSearching: boolean = false;
   searchError: string | null = null;
+
+  // Brand dropdown properties
+  brands: string[] = [];
+  selectedBrand: string = 'all';
 
   constructor(
     private phoneService: PhoneService,
@@ -30,6 +35,8 @@ export class PhoneListComponent implements OnInit {
     this.phoneService.getPhones().subscribe({
       next: (data) => {
         this.phones = data;
+        this.filteredPhones = [...data];
+        this.extractBrands();
         this.isSearching = false;
       },
       error: (err) => {
@@ -40,42 +47,52 @@ export class PhoneListComponent implements OnInit {
     });
   }
 
-  search() {
-    const query = this.searchQuery.trim();
+  extractBrands() {
+    // Get unique brands from phones
+    this.brands = [...new Set(this.phones.map(phone => phone.brand))];
+    this.brands.sort(); // Sort alphabetically
+  }
 
-    if (!query) {
-      this.loadPhones();
-      return;
+  filterByBrand() {
+    if (this.selectedBrand === 'all') {
+      this.filteredPhones = [...this.phones];
+    } else {
+      this.filteredPhones = this.phones.filter(phone =>
+        phone.brand === this.selectedBrand
+      );
     }
+    this.applySearchFilter();
+  }
 
-    this.isSearching = true;
-    this.searchError = null;
+  applySearchFilter() {
+    const query = this.searchQuery.trim().toLowerCase();
+    if (!query) return;
 
-    console.log('Searching for:', query);
+    this.filteredPhones = this.filteredPhones.filter(phone =>
+      phone.brand.toLowerCase().includes(query) ||
+      phone.model.toLowerCase().includes(query) ||
+      phone.number.includes(query)
+    );
+  }
 
-    this.phoneService.searchPhones(query).subscribe({
-      next: (results) => {
-        console.log('Search results:', results);
-        this.phones = results;
-        this.isSearching = false;
+  search() {
+    this.filterByBrand(); // Apply brand filter first
+    this.applySearchFilter(); // Then apply search query
 
-        if (results.length === 0) {
-          this.searchError = 'No phones found matching your search.';
-        }
-      },
-      error: (err) => {
-        console.error('Error searching phones:', err);
-        this.searchError = 'Search failed. Please try again.';
-        this.phones = [];
-        this.isSearching = false;
+    if (this.searchQuery.trim()) {
+      if (this.filteredPhones.length === 0) {
+        this.searchError = 'No phones found matching your search.';
+      } else {
+        this.searchError = null;
       }
-    });
+    }
   }
 
   clearSearch() {
     this.searchQuery = '';
+    this.selectedBrand = 'all';
     this.searchError = null;
-    this.loadPhones();
+    this.filteredPhones = [...this.phones];
   }
 
   goToDetails(id: number) {
