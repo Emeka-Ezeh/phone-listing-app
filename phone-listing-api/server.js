@@ -32,7 +32,7 @@ let phoneListings = [
     {id:14, brand: 'Oppo', model: 'A5', imageurl:'https://images-na.ssl-images-amazon.com/images/I/71bmeKzb9HL._AC_SL1500_.jpg', number: '111-222-3333', category: 'elettronics'},
     {id:15, brand: 'Asus', model: 'Zenfone 5', imageurl:'https://fdn2.gsmarena.com/vv/pics/asus/asus-zenfone-5-ze620kl-5z-zs620kl-1.jpg', number: '222-333-4444', category: 'elettronics'},
     {id:16, brand: 'nokia', model: 'nokia lumia', imageurl:'https://th.bing.com/th/id/OIP.F5aCI_Ldlt8PCTQJCVGE4QHaE8?rs=1&pid=ImgDetMain', number:'555-666-8888', category: 'elettronics'},
-    {id:17, brand: 'Samusung', model: 'Galaxy S22 Ultra', imageurl:'https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/S22_Ultra_Greeen_Untitled.png', number:'555-666-8888', cathegory: 'elettronics'},
+    {id:17, brand: 'Samsung', model: 'Galaxy S22 Ultra', imageurl:'https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/S22_Ultra_Greeen_Untitled.png', number:'555-666-8888', cathegory: 'elettronics'},
     {id:18, brand: 'OnePlus', model: '8 Pro', imageurl:'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-8-pro-1.jpg', number:'666-888-9999', category: 'elettronics'},
     {id:19, brand: 'Google', model: 'Pixel 5', imageurl:'https://static1.pocketnowimages.com/wordpress/wp-content/uploads/styles/xxlarge/public/2021-12/PBI%20Google%20Pixel%205A.png', number:'777-888-9999', category: 'elettronics'},
     {id:20, brand: 'Samsung', model: 'Galaxy S22', imageurl:'https://fscl01.fonpit.de/devices/23/2223.png', number:'777-888-9999', category: 'elettronics'},
