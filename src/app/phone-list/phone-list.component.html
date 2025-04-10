@@ -1,0 +1,46 @@
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search by brand or model..."
+    (keyup.enter)="search()"
+    #searchInput
+    class="search-input"
+  >
+  <button (click)="search()" [disabled]="!searchQuery.trim() || isSearching" class="search-button">
+    {{ isSearching ? 'Searching...' : 'Search' }}
+  </button>
+  <button *ngIf="searchQuery" (click)="clearSearch()" [disabled]="isSearching" class="clear-button">
+    Clear
+  </button>
+</div>
+
+<div *ngIf="isSearching" class="loading-indicator">
+  <div class="spinner"></div>
+  <p>Loading results...</p>
+</div>
+
+<div *ngIf="searchError" class="error-message">
+  {{ searchError }}
+</div>
+
+<app-carousel></app-carousel>
+
+<div *ngIf="!isSearching" class="phone-grid">
+  <div *ngFor="let phone of phones" class="phone-card" (click)="goToDetails(phone.id)">
+    <div class="card-image-container">
+      <img [src]="phone.imageurl" [alt]="phone.model" class="card-image">
+    </div>
+    <div class="phone-info">
+      <h3>{{ phone.brand }} {{ phone.model }}</h3>
+      <p class="phone-number">{{ phone.number }}</p>
+      <div class="card-overlay">
+        <span class="view-details">View Details →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isSearching && phones.length === 0 && !searchError" class="no-results">
+  No phones available. Try a different search.
+</div>

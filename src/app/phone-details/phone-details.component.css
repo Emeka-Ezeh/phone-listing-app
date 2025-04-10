@@ -1,0 +1,154 @@
+/* Add these styles to your CSS */
+
+.phone-details {
+  position: relative;
+  overflow: hidden;
+  max-width: 85%;
+  justify-content: center;
+  align-items: center;
+  margin: 55px;
+
+}
+
+
+
+/* Enhanced hover effects */
+.phone-content {
+  padding: 20px;
+  margin: 40px;
+  display: flex;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.phone-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.phone-image {
+  width: 50%;
+  height: 40%;
+  object-fit: cover;
+  z-index: 2;
+  border-radius:8px;
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color:white;
+}
+
+.phone-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.buy {
+  position: absolute;
+  top: 68%;
+  right: 70%;
+  transform: translate(50%, -50%);
+  background: linear-gradient(45deg, #0ca9e2, #4a9905);
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: blobMorph 3s infinite ease-in-out;
+}
+
+/* Blob animation effect */
+@keyframes blobMorph {
+  0% {
+    border-radius: 30% 70% 70% 30%;
+    transform: translate(50%, -50%) scale(1);
+  }
+  25% {
+    border-radius: 60% 40% 50% 50%;
+    transform: translate(50%, -50%) scale(1.05);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70%;
+    transform: translate(50%, -50%) scale(1);
+  }
+  75% {
+    border-radius: 40% 60% 60% 40%;
+    transform: translate(50%, -50%) scale(1.05);
+  }
+  100% {
+    border-radius: 30% 70% 70% 30%;
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
+/* Hover Effect - Enhancing Glow */
+.buy:hover {
+  transform: translate(50%, -50%) scale(1.1);
+  background: linear-gradient(45deg, #78c207, #345d02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  animation: glowing 1s infinite alternate;
+}
+
+/* Click Effect */
+.buy:active {
+  transform: translate(50%, -50%) scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Glowing Animation */
+@keyframes glowing {
+  0% { box-shadow: 0 0 5px #9df20a; }
+  50% { box-shadow: 0 0 20px #9df20a; }
+  100% { box-shadow: 0 0 5px #9df20a; }
+}
+
+
+.phone-specs {
+  height: 50%;
+}
+
+.phone-specs h2 {
+  transition: all 0.2s ease;
+  cursor: default;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.phone-specs h2:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.phone-specs p {
+  transition: transform 0.2s ease;
+}
+
+.phone-specs p:hover {
+  transform: translateX(10px);
+}
+
+.back-button {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blob {
+    display: none;
+  }
+
+  .phone-content:hover {
+    transform: none;
+  }
+}
