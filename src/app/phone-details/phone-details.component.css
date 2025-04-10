@@ -139,10 +139,96 @@
 }
 
 .back-button {
-  position: relative;
-  z-index: 2;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff; /* Blue color */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: blobMorphButton 3s infinite ease-in-out;
 }
 
+.back-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.back-button:active {
+  background-color: #569400; /* Even darker blue when clicked */
+}
+/* Blob animation for the button */
+@keyframes blobMorphButton {
+  0% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1);
+  }
+  25% {
+    border-radius: 60% 40% 50% 50%;
+    transform: scale(1.05);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70%;
+    transform: scale(1);
+  }
+  75% {
+    border-radius: 40% 60% 60% 40%;
+    transform: scale(1.05);
+  }
+  100% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1);
+  }
+}
+/* Blob animation for the button on hover */
+@keyframes blobMorphButtonHover {
+  0% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1.1);
+  }
+  25% {
+    border-radius: 60% 40% 50% 50%;
+    transform: scale(1.15);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70%;
+    transform: scale(1.1);
+  }
+  75% {
+    border-radius: 40% 60% 60% 40%;
+    transform: scale(1.15);
+  }
+  100% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1.1);
+  }
+}
+/* Blob animation for the button on click */
+@keyframes blobMorphButtonClick {
+  0% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1.05);
+  }
+  25% {
+    border-radius: 60% 40% 50% 50%;
+    transform: scale(1.1);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70%;
+    transform: scale(1.05);
+  }
+  75% {
+    border-radius: 40% 60% 60% 40%;
+    transform: scale(1.1);
+  }
+  100% {
+    border-radius: 30% 70% 70% 30%;
+    transform: scale(1.05);
+  }
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .blob {
